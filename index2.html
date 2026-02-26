@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yachika ❤️ My Love</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+    color:white;
+}
+
+.container{
+    text-align:center;
+    animation:fadeIn 2s ease-in-out;
+    z-index:2;
+}
+
+h1{
+    font-family:'Dancing Script',cursive;
+    font-size:50px;
+    margin-bottom:20px;
+    animation: glow 2s infinite alternate;
+}
+
+p{
+    font-size:18px;
+    max-width:600px;
+    margin:auto;
+    line-height:1.6;
+}
+
+.slideshow{
+    position:relative;
+    width:280px;
+    height:380px;
+    margin:25px auto;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 0 35px rgba(255,255,255,0.8);
+}
+
+.slideshow img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;   /* THIS FIXES FITTING */
+    object-position:center; /* Always center face */
+    opacity:0;
+    transition:opacity 1.5s ease-in-out, transform 6s ease-in-out;
+}
+
+.slideshow img.active{
+    opacity:1;
+    transform:scale(1.08);
+}
+
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+    background:white;
+    color:#ff4e78;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff4e78;
+    color:white;
+    transform:scale(1.1);
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px white,0 0 20px pink;}
+    to{text-shadow:0 0 20px white,0 0 40px red;}
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    transform:rotate(45deg);
+    animation: floatUp 6s linear infinite;
+}
+
+.heart::before,
+.heart::after{
+    content:'';
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart::before{ top:-10px; left:0; }
+.heart::after{ left:-10px; top:0; }
+
+@keyframes floatUp{
+    0%{ bottom:-10px; opacity:1; }
+    100%{ bottom:100%; opacity:0; transform:translateX(50px) rotate(45deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Yachika ❤️ My Forever</h1>
+
+    <p id="message">
+        Yachika, you are the most beautiful part of my life.  
+        Every heartbeat of mine whispers your name.  
+        I promise to love you forever and always. 💖
+    </p>
+
+    <div class="slideshow">
+        <img src="WhatsApp Image 2026-02-26 at 8.01.40 PM (1).jpeg" class="active">
+        <img src="WhatsApp Image 2026-02-26 at 8.01.40 PM (2).jpeg">
+        <img src="WhatsApp Image 2026-02-26 at 8.01.40 PM.jpeg">
+    </div>
+
+    <button onclick="showMore()">Click for More Love 💌</button>
+</div>
+
+<script>
+function showMore(){
+    document.getElementById("message").innerHTML =
+    "From the moment you came into my life, everything became brighter. ☀️<br><br>" +
+    "Your smile is my peace, your presence is my happiness. 💞<br><br>" +
+    "I love you more than words can ever explain. ❤️";
+}
+
+/* Slideshow */
+let slides = document.querySelectorAll(".slideshow img");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+
+/* Floating Hearts */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
